@@ -3,6 +3,8 @@ A version of ["Clickable Special Character Input Buttons"](https://ankiweb.net/s
 
 In other words, you don't need to pre-configure anything in the code. Just type whatever you want, and buttons for special characters will be generated as needed.
 
+Shared deck is [here](https://ankiweb.net/shared/info/1470090087).
+
 Main code is [here](note-types.org).
 
 # Demo
