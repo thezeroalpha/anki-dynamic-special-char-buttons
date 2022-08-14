@@ -1,0 +1,284 @@
+* Type in the answer with character buttons
+** Card 1
+*** Front
+#+begin_src html
+{{Front}}
+
+{{type:Back}}
+<span id='textToType' hidden>{{Back}}</span>
+<div id = "buttonsArea">
+<script>
+function onlyUniqueNonAscii(x, index, self) {
+	let topCharBound = 127; // end of ASCII range
+	return x.charCodeAt(0) > topCharBound && self.indexOf(x) == index;
+}
+
+var backText = document.getElementById('textToType').textContent;
+var buttonList = backText.split('').filter(onlyUniqueNonAscii).sort();
+
+if (document.getElementById("typeans").tagName === "INPUT") {
+    for (var i = 0; i < buttonList.length; i++) {
+        const node = document.createElement("button");
+        const textnode = document.createTextNode(buttonList[i]);
+        node.appendChild(textnode);
+        node.classList.add('letterButton');
+        node.addEventListener('click', function(e) {
+            insertAtCursor(document.getElementById('typeans'), e.target.innerHTML);
+        });
+        document.getElementById("buttonsArea").appendChild(node);
+    };
+}
+
+function insertAtCursor(myField, myValue) {
+    var startPos = myField.selectionStart;
+    var endPos = myField.selectionEnd;
+    //IE support
+    if (document.selection) {
+        myField.focus();
+        sel = document.selection.createRange();
+        sel.text = myValue;
+    }
+    //MOZILLA and others
+    else if (myField.selectionStart || myField.selectionStart == '0') {
+        myField.value = myField.value.substring(0, startPos) +
+            myValue +
+            myField.value.substring(endPos, myField.value.length);
+    } else {
+        myField.value += myValue;
+    }
+    myField.focus()
+    myField.setSelectionRange(startPos + myValue.length, startPos + myValue.length);
+
+}
+</script>
+</div>
+#+end_src
+*** Back
+#+begin_src html
+{{Front}}
+
+<hr id=answer>
+
+{{type:Back}}
+#+end_src
+
+*** Styling
+#+begin_src css
+.card {
+    font-family: arial;
+    font-size: 20px;
+    text-align: center;
+    color: black;
+    background-color: white;
+}
+.letterButton {
+  background-color: white;
+  color: black;
+  border: 1.5px solid #4CAF50; /* Green */
+  padding: 4px 10px;
+  margin-left: 5px;
+  margin-top: 5px;
+  font-size: 16px !important;
+  border-radius: 5px;
+}
+
+.letterButton {
+  transition-duration: 0.1s;
+}
+
+.letterButton:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+#+end_src
+* Type in the answer with character buttons + reverse
+
+** Card 1
+
+*** Front
+#+begin_src html
+  {{Front}}
+
+  {{type:Back}}
+  <span id='textToType' hidden>{{Back}}</span>
+  <div id = "buttonsArea">
+  <script>
+  function onlyUniqueNonAscii(x, index, self) {
+          let topCharBound = 127; // end of ASCII range
+          return x.charCodeAt(0) > topCharBound && self.indexOf(x) == index;
+  }
+
+  var backText = document.getElementById('textToType').textContent;
+  var buttonList = backText.split('').filter(onlyUniqueNonAscii).sort();
+
+  if (document.getElementById("typeans").tagName === "INPUT") {
+      for (var i = 0; i < buttonList.length; i++) {
+          const node = document.createElement("button");
+          const textnode = document.createTextNode(buttonList[i]);
+          node.appendChild(textnode);
+          node.classList.add('letterButton');
+          node.addEventListener('click', function(e) {
+              insertAtCursor(document.getElementById('typeans'), e.target.innerHTML);
+          });
+          document.getElementById("buttonsArea").appendChild(node);
+      };
+  }
+
+  function insertAtCursor(myField, myValue) {
+      var startPos = myField.selectionStart;
+      var endPos = myField.selectionEnd;
+      //IE support
+      if (document.selection) {
+          myField.focus();
+          sel = document.selection.createRange();
+          sel.text = myValue;
+      }
+      //MOZILLA and others
+      else if (myField.selectionStart || myField.selectionStart == '0') {
+          myField.value = myField.value.substring(0, startPos) +
+              myValue +
+              myField.value.substring(endPos, myField.value.length);
+      } else {
+          myField.value += myValue;
+      }
+      myField.focus()
+      myField.setSelectionRange(startPos + myValue.length, startPos + myValue.length);
+
+  }
+  </script>
+  </div>
+#+end_src
+
+*** Back
+#+begin_src html
+{{Front}}
+
+<hr id=answer>
+
+{{type:Back}}
+#+end_src
+
+*** Styling
+#+begin_src css
+  .card {
+    font-family: arial;
+    font-size: 20px;
+    text-align: center;
+    color: black;
+    background-color: white;
+}
+.letterButton {
+  background-color: white;
+  color: black;
+  border: 1.5px solid #4CAF50; /* Green */
+  padding: 4px 10px;
+  margin-left: 5px;
+  margin-top: 5px;
+  font-size: 16px !important;
+  border-radius: 5px;
+}
+
+.letterButton {
+  transition-duration: 0.1s;
+}
+
+.letterButton:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+#+end_src
+
+** Card 2
+
+*** Front
+#+begin_src html
+{{Back}}
+
+{{type:Front}}
+<span id='textToType' hidden>{{Front}}</span>
+<div id = "buttonsArea">
+<script>
+function onlyUniqueNonAscii(x, index, self) {
+	let topCharBound = 127; // end of ASCII range
+	return x.charCodeAt(0) > topCharBound && self.indexOf(x) == index;
+}
+
+var backText = document.getElementById('textToType').textContent;
+var buttonList = backText.split('').filter(onlyUniqueNonAscii).sort();
+
+if (document.getElementById("typeans").tagName === "INPUT") {
+    for (var i = 0; i < buttonList.length; i++) {
+        const node = document.createElement("button");
+        const textnode = document.createTextNode(buttonList[i]);
+        node.appendChild(textnode);
+        node.classList.add('letterButton');
+        node.addEventListener('click', function(e) {
+            insertAtCursor(document.getElementById('typeans'), e.target.innerHTML);
+        });
+        document.getElementById("buttonsArea").appendChild(node);
+    };
+}
+
+function insertAtCursor(myField, myValue) {
+    var startPos = myField.selectionStart;
+    var endPos = myField.selectionEnd;
+    //IE support
+    if (document.selection) {
+        myField.focus();
+        sel = document.selection.createRange();
+        sel.text = myValue;
+    }
+    //MOZILLA and others
+    else if (myField.selectionStart || myField.selectionStart == '0') {
+        myField.value = myField.value.substring(0, startPos) +
+            myValue +
+            myField.value.substring(endPos, myField.value.length);
+    } else {
+        myField.value += myValue;
+    }
+    myField.focus()
+    myField.setSelectionRange(startPos + myValue.length, startPos + myValue.length);
+
+}
+</script>
+</div>
+#+end_src
+
+*** Back
+#+begin_src html
+{{Back}}
+
+<hr id=answer>
+
+{{type:Front}}
+#+end_src
+
+*** Styling
+#+begin_src css
+.card {
+    font-family: arial;
+    font-size: 20px;
+    text-align: center;
+    color: black;
+    background-color: white;
+}
+.letterButton {
+  background-color: white;
+  color: black;
+  border: 1.5px solid #4CAF50; /* Green */
+  padding: 4px 10px;
+  margin-left: 5px;
+  margin-top: 5px;
+  font-size: 16px !important;
+  border-radius: 5px;
+}
+
+.letterButton {
+  transition-duration: 0.1s;
+}
+
+.letterButton:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+#+end_src
